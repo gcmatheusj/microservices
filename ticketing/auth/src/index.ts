@@ -1,5 +1,6 @@
 import expres from 'express';
 import { json } from 'body-parser';
+import mongoose from 'mongoose'
 
 import routes from './routes'
 import errorHandler from './middlewares/error-handler'
@@ -15,4 +16,17 @@ app.all('*', () => {
 
 app.use(errorHandler)
 
-app.listen(3000, () => console.log('Listening on 3000'))
+const start = async () => {
+  try {
+    await mongoose.connect('mongodb://auth-mongo-service:27017/auth', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    })
+  } catch (error) {
+    console.error(error)
+  }
+  app.listen(3000, () => console.log('Listening on 3000'))
+}
+
+start()
