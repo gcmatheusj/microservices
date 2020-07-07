@@ -1,17 +1,15 @@
 import { CustomError } from './custom-error';
 
-class NotFoundError extends CustomError {
-  public statusCode = 404
+export class NotFoundError extends CustomError {
+  statusCode = 404;
 
-  constructor(){
-    super('Router not found')
+  constructor() {
+    super('Route not found');
 
-    Object.setPrototypeOf(this, NotFoundError.prototype)
+    Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 
   serializeErrors() {
-    return [{ message: 'Not found' }]
+    return [{ message: 'Not Found' }];
   }
 }
-
-export default NotFoundError
