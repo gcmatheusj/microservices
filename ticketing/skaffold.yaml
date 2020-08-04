@@ -16,3 +16,13 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: gcmatheusj/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+          - src: "**/*.tsx"
+            dest: .
