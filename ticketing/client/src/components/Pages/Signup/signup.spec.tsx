@@ -26,7 +26,10 @@ describe('<Signup />', () => {
       })
     })
 
-    expect(getByTestId('signup-input-email').value).toBe('test@test.com')
-    expect(getByTestId('signup-input-password').value).toBe('pass123')
+    const email = getByTestId('signup-input-email') as HTMLInputElement
+    const password = getByTestId('signup-input-password') as HTMLInputElement
+
+    expect(email.value).toBe('test@test.com')
+    expect(password.value).toBe('pass123')
   })
 })
