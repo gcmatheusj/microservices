@@ -1,5 +1,5 @@
-import { Textfield } from '@components/Form'
-import Button from '@components/Button'
+import { Textfield } from 'components/Form'
+import Button from 'components/Button'
 
 const Signup: React.FC = () => {
   return (

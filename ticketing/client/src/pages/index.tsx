@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import Head from 'next/head'
 
 const Home: React.FC = () => {
   return (
@@ -209,7 +209,7 @@ const Home: React.FC = () => {
         `}
       </style>
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
