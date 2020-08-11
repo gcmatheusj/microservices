@@ -19,11 +19,13 @@ exports[`<Signup /> should render the heading 1`] = `
       </label>
       <input
         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        data-testid="signup-input-email"
         id="email"
         label="Email"
         name="email"
         placeholder="Type your email"
         type="email"
+        value=""
       />
     </div>
   </div>
@@ -41,11 +43,13 @@ exports[`<Signup /> should render the heading 1`] = `
       </label>
       <input
         class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+        data-testid="signup-input-password"
         id="password"
         label="Password"
         name="password"
         placeholder="Type your password"
         type="password"
+        value=""
       />
     </div>
   </div>
