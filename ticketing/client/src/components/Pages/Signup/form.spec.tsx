@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, act } from '@testing-library/react'
+import { render, fireEvent, act } from '@testing-library/react'
 
 import Form from './Form'
 
