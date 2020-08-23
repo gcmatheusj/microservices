@@ -1,20 +1,21 @@
-import { render, fireEvent, act } from '@testing-library/react'
+import React from 'react'
+import { render, fireEvent, waitFor } from '@testing-library/react'
 
 import Form from './Form'
 
 const mockHandleSubmit = jest.fn()
 
 describe('<Signup />', () => {
-  it('should render the heading', () => {
-    const { container } = render(<Form handleSubmit={mockHandleSubmit} />)
+  it('should match snapshot', () => {
+    const { container } = render(<Form onSubmit={mockHandleSubmit} />)
 
     expect(container.firstChild).toMatchSnapshot()
   })
 
   it('should be able to change input values', async () => {
-    const { getByTestId } = render(<Form handleSubmit={mockHandleSubmit} />)
+    const { getByTestId } = render(<Form onSubmit={mockHandleSubmit} />)
 
-    act(() => {
+    await waitFor(() => {
       fireEvent.change(getByTestId('signup-input-email'), {
         target: { value: 'test@test.com' }
       })
@@ -31,9 +32,9 @@ describe('<Signup />', () => {
   })
 
   it('should be able to submit form', async () => {
-    const { getByTestId } = render(<Form handleSubmit={mockHandleSubmit} />)
+    const { getByTestId } = render(<Form onSubmit={mockHandleSubmit} />)
 
-    act(() => {
+    await waitFor(() => {
       fireEvent.change(getByTestId('signup-input-email'), {
         target: { value: 'test@test.com' }
       })
@@ -42,7 +43,7 @@ describe('<Signup />', () => {
       })
     })
 
-    act(() => {
+    await waitFor(() => {
       fireEvent.submit(getByTestId('signup-form'))
     })
 

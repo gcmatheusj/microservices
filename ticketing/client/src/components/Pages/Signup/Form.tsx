@@ -1,18 +1,28 @@
-import { useState, FormEvent } from 'react'
+import { useFormik } from 'formik'
 
 import { Textfield } from 'components/Form'
 import Button from 'components/Button'
 
-interface Props {
-  handleSubmit: (event: FormEvent<HTMLFormElement>) => void
+interface FormValues {
+  email: string
+  password: string
 }
 
-const SignupForm: React.FC<Props> = ({ handleSubmit }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+interface Props {
+  onSubmit: (values: FormValues) => void
+}
+
+const SignupForm: React.FC<Props> = ({ onSubmit }) => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: ''
+    },
+    onSubmit
+  })
 
   return (
-    <form data-testid="signup-form" onSubmit={handleSubmit}>
+    <form data-testid="signup-form" onSubmit={formik.handleSubmit}>
       <div className="flex flex-wrap -mx-3 mb-6">
         <div className="w-full px-3">
           <Textfield
@@ -22,8 +32,8 @@ const SignupForm: React.FC<Props> = ({ handleSubmit }) => {
             name="email"
             type="email"
             placeholder="Type your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formik.values.email}
+            onChange={formik.handleChange}
           />
         </div>
       </div>
@@ -36,8 +46,8 @@ const SignupForm: React.FC<Props> = ({ handleSubmit }) => {
             name="password"
             type="password"
             placeholder="Type your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formik.values.password}
+            onChange={formik.handleChange}
           />
         </div>
       </div>

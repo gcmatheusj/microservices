@@ -3,11 +3,11 @@ import { useCallback } from 'react'
 import Form from './Form'
 
 const Signup: React.FC = () => {
-  const handleSubmit = useCallback((event) => {
-    event.preventDefault()
+  const onSubmit = useCallback((values) => {
+    console.log(values)
   }, [])
 
-  return <Form handleSubmit={handleSubmit} />
+  return <Form onSubmit={onSubmit} />
 }
 
 export default Signup
