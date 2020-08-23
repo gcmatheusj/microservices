@@ -1,14 +1,25 @@
 import { useCallback } from 'react'
+import { useRouter } from 'next/router'
+
 import api from 'services/api'
 
 import Form from './Form'
 
 const Signup: React.FC = () => {
-  const onSubmit = useCallback(async (values) => {
-    const response = await api.post('/api/users/signup', values)
+  const router = useRouter()
 
-    console.log(response.data)
-  }, [])
+  const onSubmit = useCallback(
+    async (values) => {
+      try {
+        await api.post('/api/users/signup', values)
+
+        router.push('/')
+      } catch (error) {
+        console.log(error.response.data.errors)
+      }
+    },
+    [router]
+  )
 
   return <Form onSubmit={onSubmit} />
 }

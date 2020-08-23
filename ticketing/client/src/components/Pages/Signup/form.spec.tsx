@@ -49,4 +49,27 @@ describe('<Signup />', () => {
 
     expect(mockHandleSubmit).toHaveBeenCalled()
   })
+
+  it('should be able to show validation errors', async () => {
+    const { getByTestId, queryByText } = render(
+      <Form onSubmit={mockHandleSubmit} />
+    )
+
+    await waitFor(() => {
+      fireEvent.change(getByTestId('signup-input-email'), {
+        target: { value: 'test' }
+      })
+      fireEvent.blur(getByTestId('signup-input-email'))
+
+      fireEvent.change(getByTestId('signup-input-password'), {
+        target: { value: 'pas' }
+      })
+      fireEvent.blur(getByTestId('signup-input-password'))
+    })
+
+    expect(queryByText('Invalid email')).not.toBeNull()
+    expect(
+      queryByText('Password must be between 4 and 20 characters')
+    ).not.toBeNull()
+  })
 })
