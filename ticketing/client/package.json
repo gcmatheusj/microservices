@@ -10,7 +10,7 @@
     "test:watch": "yarn test --watch"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "formik": "^2.1.5",
     "next": "9.5.1",
     "react": "16.13.1",
